@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://7t8yksj1dbhf"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
+[ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
+
+[sub_resource type="Curve2D" id="Curve2D_gw0ji"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 480, 0, 0, 0, 0, 720, 0)
+}
+point_count = 3
+
+[node name="Main" type="Node"]
+script = ExtResource("1_tw7s1")
+
+[node name="Player" parent="." instance=ExtResource("1_vm42q")]
+position = Vector2(74, 246)
+
+[node name="ObstacleTimer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="ObstaclePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gw0ji")
+
+[node name="ObstacleSpawnLocation" type="PathFollow2D" parent="ObstaclePath"]
+position = Vector2(720, 0)
+rotation = 1.5708

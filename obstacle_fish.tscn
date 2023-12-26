@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ov3n4e0cmnbq"]
+[gd_scene load_steps=6 format=3 uid="uid://ov3n4e0cmnbq"]
 
 [ext_resource type="Texture2D" uid="uid://dxrxc7vdtgof" path="res://art/sprites/obstacles/fish1.png" id="1_6rr0g"]
+[ext_resource type="Script" path="res://obstacle_fish.gd" id="1_xq3y3"]
 [ext_resource type="Texture2D" uid="uid://634mrv2co1s" path="res://art/sprites/obstacles/fish2.png" id="2_6tc75"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4rh4g"]
@@ -13,8 +14,8 @@ animations = [{
 "texture": ExtResource("2_6tc75")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"swim",
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vf76l"]
@@ -23,13 +24,17 @@ height = 92.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
 position = Vector2(173, 109)
+script = ExtResource("1_xq3y3")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.363, 0.363)
 sprite_frames = SubResource("SpriteFrames_4rh4g")
+animation = &"swim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-20, -1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vf76l")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
