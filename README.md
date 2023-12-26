@@ -1,5 +1,5 @@
 # flappy-fish
-Practice game in advance of https://itch.io/jam/pirate
+Practice game in advance of https://itch.io/jam/pirate <br>
 GitHub project can be found [here](https://github.com/orgs/Aveli-games/projects/1/settings)
 
 ## Game Design Document
