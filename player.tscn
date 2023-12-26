@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://yyaj3k1cmcfm"]
+
+[ext_resource type="Texture2D" uid="uid://bjl1tfsyusdem" path="res://art/sprites/player/fish1.png" id="1_byiqn"]
+[ext_resource type="Texture2D" uid="uid://qheh2jvftmnk" path="res://art/sprites/player/fish2.png" id="2_fhb7f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ma7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_byiqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fhb7f")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfeb8"]
+radius = 23.0
+height = 92.0
+
+[node name="Player" type="Area2D"]
+position = Vector2(155, 124)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.362903, 0.386364)
+sprite_frames = SubResource("SpriteFrames_4ma7g")
+animation = &"swim"
+frame = 1
+frame_progress = 0.570127
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kfeb8")
