@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=5 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
+[ext_resource type="PackedScene" uid="uid://ov3n4e0cmnbq" path="res://obstacle_fish.tscn" id="2_pqwfw"]
 
 [sub_resource type="Curve2D" id="Curve2D_gw0ji"]
 _data = {
@@ -11,11 +12,13 @@ point_count = 3
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tw7s1")
+obstacle_scene = ExtResource("2_pqwfw")
 
 [node name="Player" parent="." instance=ExtResource("1_vm42q")]
 position = Vector2(74, 246)
 
 [node name="ObstacleTimer" type="Timer" parent="."]
+wait_time = 0.3
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
@@ -25,3 +28,5 @@ curve = SubResource("Curve2D_gw0ji")
 [node name="ObstacleSpawnLocation" type="PathFollow2D" parent="ObstaclePath"]
 position = Vector2(720, 0)
 rotation = 1.5708
+
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
