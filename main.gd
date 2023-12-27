@@ -5,6 +5,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().call_group("obstacles", "queue_free")
+	$Player.start($StartPosition.position)
 	$ObstacleTimer.start()
 
 

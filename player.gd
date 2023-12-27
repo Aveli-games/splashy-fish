@@ -1,5 +1,7 @@
 extends Area2D
 
+signal hit
+
 var speed = 0
 var swim_impulse = 150
 var coasting_deceleration = 150
@@ -53,3 +55,14 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "swim_up"
 	else:
 		$AnimatedSprite2D.animation = "swim_neutral"
+
+
+func _on_body_entered(body):
+	hide() # Disappear after being hit
+	hit.emit()
+	$CollisionShape2D.set_deferred("disabled", true)
+	
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false

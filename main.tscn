@@ -15,12 +15,14 @@ script = ExtResource("1_tw7s1")
 obstacle_scene = ExtResource("2_pqwfw")
 
 [node name="Player" parent="." instance=ExtResource("1_vm42q")]
-position = Vector2(74, 246)
+position = Vector2(-104, 40)
 
 [node name="ObstacleTimer" type="Timer" parent="."]
 wait_time = 0.3
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(64, 224)
+scale = Vector2(-14.2, -114)
 
 [node name="ObstaclePath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_gw0ji")
