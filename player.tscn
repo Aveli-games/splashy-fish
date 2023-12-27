@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://yyaj3k1cmcfm"]
+[gd_scene load_steps=7 format=3 uid="uid://yyaj3k1cmcfm"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3epn2"]
 [ext_resource type="Texture2D" uid="uid://bjl1tfsyusdem" path="res://art/sprites/player/fish1.png" id="1_byiqn"]
 [ext_resource type="Texture2D" uid="uid://qheh2jvftmnk" path="res://art/sprites/player/fish2.png" id="2_fhb7f"]
+[ext_resource type="Texture2D" uid="uid://b0m0rs7tcg40x" path="res://art/sprites/player/fish_neutral.png" id="2_vd4gn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ma7g"]
 animations = [{
@@ -11,10 +12,32 @@ animations = [{
 "texture": ExtResource("1_byiqn")
 }, {
 "duration": 1.0,
+"texture": ExtResource("2_vd4gn")
+}],
+"loop": true,
+"name": &"swim_down",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_byiqn")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_fhb7f")
 }],
 "loop": true,
-"name": &"swim",
+"name": &"swim_neutral",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fhb7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vd4gn")
+}],
+"loop": true,
+"name": &"swim_up",
 "speed": 3.0
 }]
 
@@ -30,9 +53,7 @@ script = ExtResource("1_3epn2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.362903, 0.386364)
 sprite_frames = SubResource("SpriteFrames_4ma7g")
-animation = &"swim"
-frame = 1
-frame_progress = 0.570127
+animation = &"swim_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(20, -1)
