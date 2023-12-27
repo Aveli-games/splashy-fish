@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://x3oe10u0lnm6"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_08byj")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 608.0
+offset_top = 16.0
+offset_right = 669.0
+offset_bottom = 39.0
+text = "Score: 0"
+
+[node name="Message" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 104.0
+offset_right = 477.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 64
+text = "Survive!"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 256.0
+offset_top = 272.0
+offset_right = 456.0
+offset_bottom = 368.0
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
