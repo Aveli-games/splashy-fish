@@ -52,7 +52,7 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 	# When player hits bottom, cancel all speed
-	if position.y == 480:
+	if position.y == screen_size.y:
 		speed = 0
 	
 	if velocity.y > 0:
