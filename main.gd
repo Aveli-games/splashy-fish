@@ -16,6 +16,8 @@ func game_over():
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
 	$HUD.show_game_over()
+	$Music.stop()
+	$GameOverSound.play()
 
 func new_game():
 	score = 0
@@ -23,6 +25,7 @@ func new_game():
 	$HUD.update_score("Score: %s" % score)
 	$HUD.show_message("Get Ready")
 	$StartTimer.start()
+	$Music.play()
 
 func _on_obstacle_timer_timeout():
 	# Create a new instance of the Mob scene.

@@ -3,7 +3,7 @@ extends Area2D
 signal hit
 
 var speed = 0
-var swim_impulse = 150
+var acceleration = 15
 var coasting_deceleration = 150
 var air_gravity = 400
 var velocity = Vector2.ZERO
@@ -28,12 +28,12 @@ func _process(delta):
 		speed -= air_gravity * delta
 	# Get direction player is swimming, but require a keystoke per impulse
 	else:
-		if Input.is_action_just_pressed("swim_up"):
+		if Input.is_action_pressed("swim_up"):
 			direction = 1
-		if Input.is_action_just_pressed("swim_down"):
+		if Input.is_action_pressed("swim_down"):
 			direction = -1
 		# Apply the swim impulse
-		speed += swim_impulse * direction
+		speed += acceleration * direction
 		
 		# Apply constant drag against movement
 		if speed > coasting_deceleration * delta: 
@@ -52,7 +52,7 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 	# When player hits bottom, cancel all speed
-	if position.y == 0:
+	if position.y == screen_size.y:
 		speed = 0
 	
 	if velocity.y > 0:
