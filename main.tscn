@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
 [ext_resource type="PackedScene" uid="uid://ov3n4e0cmnbq" path="res://obstacle_fish.tscn" id="2_pqwfw"]
-[ext_resource type="Texture2D" uid="uid://p5pw5arj3jl8" path="res://art/1x1_#FFFFFFFF.png" id="4_0dutb"]
+[ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="4_0dutb"]
 [ext_resource type="PackedScene" uid="uid://x3oe10u0lnm6" path="res://hud.tscn" id="4_8fpnk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
