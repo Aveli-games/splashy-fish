@@ -5,7 +5,7 @@ signal hit
 var speed = 0
 var swim_impulse = 150
 var coasting_deceleration = 150
-var air_gravity = 80
+var air_gravity = 400
 var velocity = Vector2.ZERO
 
 var in_air = false
@@ -49,7 +49,7 @@ func _process(delta):
 	position += velocity * delta
 	
 	# Prevent flying off bottom of screen
-	position = max(Vector2.ZERO, screen_size)
+	position = position.clamp(Vector2.ZERO, screen_size)
 
 	# When player hits bottom, cancel all speed
 	if position.y == 0:
@@ -72,3 +72,11 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+func _on_area_entered(area):
+	if (area.name == 'Air'):
+		in_air = true
+
+func _on_area_exited(area):
+	if (area.name == 'Air'):
+		in_air = false
