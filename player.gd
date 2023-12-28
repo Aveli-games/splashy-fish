@@ -5,7 +5,10 @@ signal hit
 var speed = 0
 var swim_impulse = 150
 var coasting_deceleration = 150
+var air_gravity = 400
 var velocity = Vector2.ZERO
+
+var in_air = false
 
 var screen_size
 
@@ -20,33 +23,36 @@ func _ready():
 func _process(delta):
 	var direction = 0
 	
+
+	if in_air:
+		speed -= air_gravity * delta
 	# Get direction player is swimming, but require a keystoke per impulse
-	if Input.is_action_just_pressed("swim_up"):
-		direction = 1
-	if Input.is_action_just_pressed("swim_down"):
-		direction = -1
-	
-	# Apply the swim impulse
-	speed += swim_impulse * direction
-	
-	# Apply constant drag against movement
-	if speed > coasting_deceleration * delta: 
-		speed -= coasting_deceleration * delta
-	elif speed < -(coasting_deceleration * delta):
-		speed += coasting_deceleration * delta
 	else:
-		speed = 0
+		if Input.is_action_just_pressed("swim_up"):
+			direction = 1
+		if Input.is_action_just_pressed("swim_down"):
+			direction = -1
+		# Apply the swim impulse
+		speed += swim_impulse * direction
+		
+		# Apply constant drag against movement
+		if speed > coasting_deceleration * delta: 
+			speed -= coasting_deceleration * delta
+		elif speed < -(coasting_deceleration * delta):
+			speed += coasting_deceleration * delta
+		else:
+			speed = 0
 	
 	# Calc vector and change position
 	velocity = Vector2.UP * speed
 	
 	position += velocity * delta
 	
-	# Prevent flying off the screen
+	# Prevent flying off bottom of screen
 	position = position.clamp(Vector2.ZERO, screen_size)
-	
-	# When player hits wall, cancel all speed
-	if position.y == 0 || position.y == screen_size.y:
+
+	# When player hits bottom, cancel all speed
+	if position.y == 0:
 		speed = 0
 	
 	if velocity.y > 0:
@@ -66,3 +72,11 @@ func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+func _on_area_entered(area):
+	if (area.name == 'Air'):
+		in_air = true
+
+func _on_area_exited(area):
+	if (area.name == 'Air'):
+		in_air = false
