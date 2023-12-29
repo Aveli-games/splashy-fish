@@ -31,10 +31,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_hrwat")
+"texture": ExtResource("4_s1281")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ebb20")
+"texture": ExtResource("3_hrwat")
 }],
 "loop": true,
 "name": &"swim_up",
@@ -54,7 +54,7 @@ script = ExtResource("1_3epn2")
 scale = Vector2(0.362903, 0.386364)
 sprite_frames = SubResource("SpriteFrames_4ma7g")
 animation = &"swim_up"
-frame_progress = 0.480171
+frame_progress = 0.965169
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(32, -2.66667)
