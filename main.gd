@@ -15,7 +15,7 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
-	$HUD.show_game_over()
+	$HUD.show_game_over($GameOverSound.stream.get_length())
 	$Music.stop()
 	$GameOverSound.play()
 
@@ -23,7 +23,7 @@ func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
 	$HUD.update_score("Score: %s" % score)
-	$HUD.show_message("Get Ready")
+	$HUD.show_timed_message("Get Ready", $StartTimer.wait_time)
 	$StartTimer.start()
 	$Music.play()
 

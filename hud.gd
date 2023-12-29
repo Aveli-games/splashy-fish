@@ -6,18 +6,23 @@ signal start_game
 func show_message(text):
 	$Message.text = text
 	$Message.show()
+
+func show_timed_message(text, time):
+	$Message.text = text
+	$Message.show()
+	$MessageTimer.wait_time = time
 	$MessageTimer.start()
 	
-func show_game_over():
-	show_message("Game Over")
+func show_game_over(time):
+	show_timed_message("Game Over", time)
+	
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
-	$Message.text = "Survive!"
-	$Message.show()
+	show_message("Survive!")
 
-	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1.0).timeout
+	
 	$StartButton.show()
 
 func update_score(score):
