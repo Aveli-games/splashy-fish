@@ -3,28 +3,28 @@
 [ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="2_lm2ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucyvm"]
-size = Vector2(214, 20)
+size = Vector2(500, 20)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 gravity_scale = 0.0
-metadata/_edit_group_ = true
+metadata/_edit_horizontal_guides_ = [500.0, -500.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, 125)
+position = Vector2(2.08165e-12, 280)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ucyvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-scale = Vector2(216, 20)
+scale = Vector2(500, 20)
 texture = ExtResource("2_lm2ql")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -125)
+position = Vector2(2.08165e-12, -280)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ucyvm")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
-scale = Vector2(216, 20)
+scale = Vector2(500, 20)
 texture = ExtResource("2_lm2ql")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

@@ -39,7 +39,7 @@ func _on_obstacle_timer_timeout():
 	obstacle.position = obstacle_spawn_location.position
 
 	# Choose the velocity for the obstacle.
-	obstacle.linear_velocity = 400 * Vector2.LEFT
+	obstacle.linear_velocity = 300 * Vector2.LEFT
 
 	# Spawn the obstacle by adding it to the Main scene.
 	add_child(obstacle)
