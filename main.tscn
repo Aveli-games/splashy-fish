@@ -59,7 +59,7 @@ position = Vector2(-104, 40)
 collision_mask = 3
 
 [node name="ObstacleTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.8
 
 [node name="ScoreTimer" type="Timer" parent="."]
 

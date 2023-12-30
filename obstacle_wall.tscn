@@ -10,7 +10,7 @@ gravity_scale = 0.0
 metadata/_edit_horizontal_guides_ = [500.0, -500.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, 280)
+position = Vector2(2.08165e-12, 300)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ucyvm")
 
@@ -19,7 +19,7 @@ scale = Vector2(500, 20)
 texture = ExtResource("2_lm2ql")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, -280)
+position = Vector2(2.08165e-12, -300)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ucyvm")
 
