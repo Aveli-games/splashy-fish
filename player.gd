@@ -55,9 +55,9 @@ func _process(delta):
 	if position.y == screen_size.y:
 		speed = 0
 	
-	if velocity.y > 0:
+	if velocity.y > 0 && not in_air:
 		$AnimatedSprite2D.animation = "swim_down"
-	elif velocity.y < 0:
+	elif velocity.y < 0 && not in_air:
 		$AnimatedSprite2D.animation = "swim_up"
 	else:
 		$AnimatedSprite2D.animation = "swim_neutral"

@@ -43,8 +43,10 @@ scale = Vector2(87.0892, 201)
 texture = ExtResource("4_0dutb")
 centered = false
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Air/CollisionShape2D/Sprite2D"]
-color = Color(0.678431, 1, 1, 1)
+[node name="ColorRect" type="ColorRect" parent="Air/CollisionShape2D/Sprite2D"]
+offset_right = 1.0
+offset_bottom = 1.0
+color = Color(0, 0.823529, 1, 1)
 
 [node name="Water" type="ColorRect" parent="."]
 offset_top = 179.0

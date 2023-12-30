@@ -1,18 +1,18 @@
 [gd_scene load_steps=7 format=3 uid="uid://yyaj3k1cmcfm"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3epn2"]
-[ext_resource type="Texture2D" uid="uid://bjl1tfsyusdem" path="res://art/sprites/player/fish1.png" id="1_byiqn"]
-[ext_resource type="Texture2D" uid="uid://qheh2jvftmnk" path="res://art/sprites/player/fish2.png" id="2_fhb7f"]
-[ext_resource type="Texture2D" uid="uid://b0m0rs7tcg40x" path="res://art/sprites/player/fish_neutral.png" id="2_vd4gn"]
+[ext_resource type="Texture2D" uid="uid://c178vq78cteuk" path="res://art/sprites/player/fish_watercolor_up.png" id="2_ebb20"]
+[ext_resource type="Texture2D" uid="uid://b1kjcge12l8r7" path="res://art/sprites/player/fish_watercolor_neutral.png" id="3_hrwat"]
+[ext_resource type="Texture2D" uid="uid://bps180ujvbx0y" path="res://art/sprites/player/fish_watercolor_down.png" id="4_s1281"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ma7g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_byiqn")
+"texture": ExtResource("2_ebb20")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_vd4gn")
+"texture": ExtResource("3_hrwat")
 }],
 "loop": true,
 "name": &"swim_down",
@@ -20,10 +20,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_byiqn")
+"texture": ExtResource("4_s1281")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_fhb7f")
+"texture": ExtResource("2_ebb20")
 }],
 "loop": true,
 "name": &"swim_neutral",
@@ -31,10 +31,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fhb7f")
+"texture": ExtResource("4_s1281")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_vd4gn")
+"texture": ExtResource("3_hrwat")
 }],
 "loop": true,
 "name": &"swim_up",
@@ -42,21 +42,22 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfeb8"]
-radius = 23.0
-height = 92.0
+radius = 24.0
+height = 62.6667
 
 [node name="Player" type="Area2D"]
 position = Vector2(66, 60)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_3epn2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.362903, 0.386364)
 sprite_frames = SubResource("SpriteFrames_4ma7g")
-animation = &"swim_down"
+animation = &"swim_up"
+frame_progress = 0.965169
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(20, -1)
+position = Vector2(32, -2.66667)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kfeb8")
 
