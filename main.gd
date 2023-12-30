@@ -28,20 +28,20 @@ func new_game():
 	$Music.play()
 
 func _on_obstacle_timer_timeout():
-	# Create a new instance of the Mob scene.
+	# Create a new instance of the obstacle scene.
 	var obstacle = obstacle_scene.instantiate()
 
 	# Choose a random location on Path2D.
 	var obstacle_spawn_location = get_node("ObstaclePath/ObstacleSpawnLocation")
 	obstacle_spawn_location.progress_ratio = randf()
 
-	# Set the mob's position to a random location.
+	# Set the obstacle's position to a random location.
 	obstacle.position = obstacle_spawn_location.position
 
-	# Choose the velocity for the mob.
+	# Choose the velocity for the obstacle.
 	obstacle.linear_velocity = 400 * Vector2.LEFT
 
-	# Spawn the mob by adding it to the Main scene.
+	# Spawn the obstacle by adding it to the Main scene.
 	add_child(obstacle)
 
 func _on_start_timer_timeout():

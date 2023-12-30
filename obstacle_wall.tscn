@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://j47r672at4fb"]
+
+[ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="2_lm2ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucyvm"]
+size = Vector2(214, 20)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 125)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ucyvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+scale = Vector2(216, 20)
+texture = ExtResource("2_lm2ql")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -125)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ucyvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
+scale = Vector2(216, 20)
+texture = ExtResource("2_lm2ql")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
