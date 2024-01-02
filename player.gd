@@ -70,6 +70,7 @@ func _on_body_entered(body):
 
 func start(pos):
 	position = pos
+	speed = 0
 	show()
 	$CollisionShape2D.disabled = false
 
