@@ -1,30 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://j47r672at4fb"]
+[gd_scene load_steps=4 format=3 uid="uid://j47r672at4fb"]
 
+[ext_resource type="Script" path="res://obstacle_wall.gd" id="1_pkycu"]
 [ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="2_lm2ql"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucyvm"]
-size = Vector2(500, 20)
+size = Vector2(20, 500)
 
 [node name="Obstacle" type="RigidBody2D"]
 gravity_scale = 0.0
+script = ExtResource("1_pkycu")
 metadata/_edit_horizontal_guides_ = [500.0, -500.0]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, 300)
-rotation = 1.5708
+[node name="TopGate" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -250)
 shape = SubResource("RectangleShape2D_ucyvm")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-scale = Vector2(500, 20)
+[node name="Sprite2D" type="Sprite2D" parent="TopGate"]
+scale = Vector2(20, 500)
 texture = ExtResource("2_lm2ql")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(2.08165e-12, -300)
-rotation = 1.5708
+[node name="BottomGate" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, 250)
 shape = SubResource("RectangleShape2D_ucyvm")
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D2"]
-scale = Vector2(500, 20)
+[node name="Sprite2D" type="Sprite2D" parent="BottomGate"]
+scale = Vector2(20, 500)
 texture = ExtResource("2_lm2ql")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
