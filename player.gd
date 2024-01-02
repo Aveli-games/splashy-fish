@@ -3,7 +3,7 @@ extends Area2D
 signal hit
 
 
-var MAX_SPEED = 400
+const MAX_SPEED = 400
 
 var speed = 0
 var acceleration = 900
