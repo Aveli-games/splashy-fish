@@ -16,14 +16,17 @@ func show_timed_message(text, time):
 func show_game_over(time):
 	show_timed_message("Game Over", time)
 	
+	$StartButton.show()
+	
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
-	show_message("Survive!")
+	if $StartButton.visible:
+		show_message("Survive!")
 
-	await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0).timeout
 	
-	$StartButton.show()
+	
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
@@ -33,6 +36,8 @@ func _on_message_timer_timeout():
 
 func _on_start_button_pressed():
 	$StartButton.hide()
+	$Message.hide()
+	$MessageTimer.stop()
 	start_game.emit()
 
 # Called when the node enters the scene tree for the first time.
