@@ -23,8 +23,6 @@ func game_over():
 func new_game():
 	score = 0
 	obstacle_gap_size = 300
-	if not $Player.visible:
-		$Player.start($StartPosition.position)
 	$HUD.update_score("Score: %s" % score)
 	$HUD.show_timed_message("Get Ready", $StartTimer.wait_time)
 	$StartTimer.start()
@@ -53,6 +51,8 @@ func _on_obstacle_timer_timeout():
 	add_child(obstacle)
 
 func _on_start_timer_timeout():
+	if not $Player.visible:
+		$Player.start($StartPosition.position)
 	$ObstacleTimer.start()
 	$ScoreTimer.start()
 
