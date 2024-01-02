@@ -2,6 +2,7 @@ extends Node
 
 @export var obstacle_scene: PackedScene
 var score
+var obstacle_gap_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,7 @@ func game_over():
 
 func new_game():
 	score = 0
+	obstacle_gap_size = 300
 	$Player.start($StartPosition.position)
 	$HUD.update_score("Score: %s" % score)
 	$HUD.show_message("Get Ready")
@@ -41,8 +43,9 @@ func _on_obstacle_timer_timeout():
 	# Choose the velocity for the obstacle.
 	obstacle.linear_velocity = 250 * Vector2.LEFT
 
-	# Parameterized gap for obstacle
-	obstacle.set_gap(0)
+	# Parameterized gap in obstacle (px tall)
+	obstacle.set_gap(obstacle_gap_size)
+	obstacle_gap_size = max(obstacle_gap_size-10, 100)
 
 	# Spawn the obstacle by adding it to the Main scene.
 	add_child(obstacle)
