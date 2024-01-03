@@ -4,6 +4,7 @@ signal hit
 
 
 const MAX_SPEED = 800
+const MAX_ROTATION = PI / 3 # 60 degrees
 
 var speed = 0
 var acceleration = 1800
@@ -68,8 +69,8 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.animation = "swim_neutral"
 		
-	# Rotation based on velocity
-	rotation = -PI / 2 * speed / (MAX_SPEED * 1.5)
+	# Rotation based on percentage of max speed reached
+	rotation = -MAX_ROTATION * (speed / MAX_SPEED)
 
 
 func _on_body_entered(body):
