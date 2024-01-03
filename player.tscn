@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://yyaj3k1cmcfm"]
+[gd_scene load_steps=6 format=3 uid="uid://yyaj3k1cmcfm"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3epn2"]
 [ext_resource type="Texture2D" uid="uid://c178vq78cteuk" path="res://art/sprites/player/fish_watercolor_up.png" id="2_ebb20"]
@@ -41,10 +41,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfeb8"]
-radius = 24.0
-height = 62.6667
-
 [node name="Player" type="Area2D"]
 position = Vector2(66, 60)
 scale = Vector2(0.75, 0.75)
@@ -53,12 +49,12 @@ script = ExtResource("1_3epn2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.362903, 0.386364)
 sprite_frames = SubResource("SpriteFrames_4ma7g")
-animation = &"swim_up"
-frame_progress = 0.965169
+animation = &"swim_neutral"
+frame = 1
+frame_progress = 0.952769
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(32, -2.66667)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_kfeb8")
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.362903, 0.386364)
+polygon = PackedVector2Array(40.4148, 6.90196, 62.4593, 27.6078, 77.1556, 31.0588, 99.2, 31.0588, 117.57, 31.0588, 132.267, 24.1568, 139.615, 20.7059, 146.963, 17.2549, 154.311, 13.8039, 161.659, 6.90196, 169.008, 0, 172.682, -3.45097, 172.682, -10.3529, 169.008, -13.8039, 157.985, -20.7059, 150.637, -24.1568, 139.615, -31.0588, 135.941, -34.5098, 124.919, -41.4117, 106.548, -41.4117, 88.1778, -41.4117, 77.1556, -37.9607, 62.4593, -31.0588, 44.0889, -17.2549, 3.67407, -17.2549, -11.0222, 0, 3.67407, 20.7059)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
