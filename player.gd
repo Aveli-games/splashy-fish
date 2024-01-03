@@ -75,13 +75,13 @@ func _process(delta):
 func _on_body_entered(body):
 	hide() # Disappear after being hit
 	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+	$Hitbox.set_deferred("disabled", true)
 
 func start(pos):
 	position = pos
 	speed = 0
 	show()
-	$CollisionShape2D.disabled = false
+	$Hitbox.disabled = false
 
 func _on_area_entered(area):
 	if (area.name == 'Air'):
