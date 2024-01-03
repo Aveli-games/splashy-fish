@@ -3,12 +3,12 @@ extends Area2D
 signal hit
 
 
-const MAX_SPEED = 400
+const MAX_SPEED = 800
 
 var speed = 0
-var acceleration = 900
-var coasting_deceleration = 400
-var air_gravity = 400
+var acceleration = 1800
+var coasting_deceleration = 600
+var air_gravity = 1000
 var velocity = Vector2.ZERO
 
 var in_air = false
@@ -81,6 +81,8 @@ func start(pos):
 	position = pos
 	speed = 0
 	show()
+	# Give 1 second of invulnerability at start to account for any old obstacles
+	await get_tree().create_timer(1.0).timeout
 	$Hitbox.disabled = false
 
 func _on_area_entered(area):

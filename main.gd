@@ -6,7 +6,6 @@ var obstacle_gap_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().call_group("obstacles", "queue_free")
 	$Player.start($StartPosition.position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,7 +40,7 @@ func _on_obstacle_timer_timeout():
 	obstacle.position = obstacle_spawn_location.position
 
 	# Choose the velocity for the obstacle.
-	obstacle.linear_velocity = 250 * Vector2.LEFT
+	obstacle.linear_velocity = 400 * Vector2.LEFT
 
 	# Parameterized gap in obstacle (px tall)
 	obstacle.set_gap(obstacle_gap_size)

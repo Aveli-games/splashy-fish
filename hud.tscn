@@ -6,25 +6,45 @@
 script = ExtResource("1_08byj")
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 608.0
-offset_top = 16.0
-offset_right = 669.0
-offset_bottom = 39.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -184.0
+offset_top = 40.0
+offset_right = -1.0
+offset_bottom = 126.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 
 [node name="Message" type="Label" parent="."]
-offset_top = 104.0
-offset_right = 720.0
-offset_bottom = 192.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -190.0
+offset_right = 360.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Survive!"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 256.0
-offset_top = 272.0
-offset_right = 456.0
-offset_bottom = 368.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -48.0
+offset_right = 100.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Start"
 
