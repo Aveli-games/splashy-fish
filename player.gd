@@ -38,10 +38,10 @@ func _process(delta):
 			direction = -1
 		# Apply the swim impulse
 		speed += acceleration * delta * direction
-		
+
 		# Apply constant drag against movement if no direction input
 		if not direction:
-			if speed > coasting_deceleration * delta: 
+			if speed > coasting_deceleration * delta:
 				speed -= coasting_deceleration * delta
 			elif speed < -(coasting_deceleration * delta):
 				speed += coasting_deceleration * delta
@@ -60,7 +60,7 @@ func _process(delta):
 		speed = 0
 	else:
 		speed = clamp(speed, -MAX_SPEED, MAX_SPEED)
-	
+
 	# Sprite animation based on direction of player input (neutral in air)
 	if direction < 0 && not in_air:
 		$AnimatedSprite2D.animation = "swim_down"
@@ -68,7 +68,7 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "swim_up"
 	else:
 		$AnimatedSprite2D.animation = "swim_neutral"
-		
+
 	# Rotation based on percentage of max speed reached
 	rotation = -MAX_ROTATION * (speed / MAX_SPEED)
 

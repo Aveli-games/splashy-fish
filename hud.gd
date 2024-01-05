@@ -12,12 +12,12 @@ func show_timed_message(text, time):
 	$Message.show()
 	$MessageTimer.wait_time = time
 	$MessageTimer.start()
-	
+
 func show_game_over(time):
 	show_timed_message("Game Over", time)
-	
+
 	$StartButton.show()
-	
+
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
@@ -25,8 +25,8 @@ func show_game_over(time):
 		show_message("Survive!")
 
 		await get_tree().create_timer(1.0).timeout
-	
-	
+
+
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
