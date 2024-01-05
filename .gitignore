@@ -4,3 +4,6 @@
 
 # JS stuff
 server/node_modules/
+
+# IDE stuff
+.idea
