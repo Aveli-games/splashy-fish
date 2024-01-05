@@ -1,23 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://x3oe10u0lnm6"]
+[gd_scene load_steps=5 format=3 uid="uid://x3oe10u0lnm6"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
+[ext_resource type="Script" path="res://local_leaderboard.gd" id="2_612nh"]
+[ext_resource type="PackedScene" uid="uid://cp6swo8p0hpag" path="res://game_score.tscn" id="2_le2dc"]
+[ext_resource type="Script" path="res://high_scores.gd" id="3_cdame"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_08byj")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -189.0
+offset_right = 172.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="GameTitle" type="Label" parent="MainMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Flappy Fish"
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="ScoreboardButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Scores"
+
+[node name="GameScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScoreLabel" type="Label" parent="GameScreen"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -184.0
 offset_top = 40.0
 offset_right = -1.0
-offset_bottom = 126.0
+offset_bottom = 88.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Score: 0"
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="GameScreen"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,23 +68,99 @@ theme_override_font_sizes/font_size = 64
 text = "Survive!"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
+[node name="RestartButton" type="Button" parent="GameScreen"]
+visible = false
+offset_left = 468.0
+offset_top = 299.0
+offset_right = 812.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 64
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="GameScreen"]
+wait_time = 4.0
+
+[node name="LocalLeaderboard" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -48.0
-offset_right = 100.0
-offset_bottom = 48.0
+offset_left = -416.0
+offset_top = -316.0
+offset_right = 382.0
+offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_612nh")
+
+[node name="Title" type="Label" parent="LocalLeaderboard"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "Start"
+text = "High Scores"
+horizontal_alignment = 1
 
-[node name="MessageTimer" type="Timer" parent="."]
-wait_time = 4.0
+[node name="ScoresScroll" type="ScrollContainer" parent="LocalLeaderboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[node name="HighScores" type="VBoxContainer" parent="LocalLeaderboard/ScoresScroll" groups=["HighScores"]]
+layout_mode = 2
+alignment = 1
+script = ExtResource("3_cdame")
+game_score_scene = ExtResource("2_le2dc")
+
+[node name="MainMenuButton" type="Button" parent="LocalLeaderboard"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
+[node name="HighScoreEntry" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.5
+offset_top = -189.5
+offset_right = 174.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="HighScoreEntry"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "High Score!"
+
+[node name="PlayerScore" type="Label" parent="HighScoreEntry"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="NameEntry" type="LineEdit" parent="HighScoreEntry"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Enter Name"
+alignment = 1
+max_length = 3
+
+[node name="NameSubmitButton" type="Button" parent="HighScoreEntry"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Submit"
+
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/ScoreboardButton" to="." method="_on_scoreboard_button_pressed"]
+[connection signal="pressed" from="GameScreen/RestartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="GameScreen/MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="visibility_changed" from="LocalLeaderboard" to="LocalLeaderboard" method="_on_visibility_changed"]
+[connection signal="pressed" from="LocalLeaderboard/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="HighScoreEntry/NameSubmitButton" to="." method="_on_name_submit_button_pressed"]
