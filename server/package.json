@@ -4,7 +4,7 @@
   "description": "simple highscore server",
   "main": "index.js",
   "scripts": {
-    "run": "node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
