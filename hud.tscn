@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://x3oe10u0lnm6"]
+[gd_scene load_steps=6 format=3 uid="uid://x3oe10u0lnm6"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
 [ext_resource type="Script" path="res://local_leaderboard.gd" id="2_612nh"]
 [ext_resource type="PackedScene" uid="uid://cp6swo8p0hpag" path="res://game_score.tscn" id="2_le2dc"]
 [ext_resource type="Script" path="res://high_scores.gd" id="3_cdame"]
+[ext_resource type="Script" path="res://name_entry.gd" id="5_a5jol"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_08byj")
@@ -151,6 +152,7 @@ theme_override_font_sizes/font_size = 32
 placeholder_text = "Enter Name"
 alignment = 1
 max_length = 3
+script = ExtResource("5_a5jol")
 
 [node name="NameSubmitButton" type="Button" parent="HighScoreEntry"]
 layout_mode = 2
@@ -163,4 +165,5 @@ text = "Submit"
 [connection signal="timeout" from="GameScreen/MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="visibility_changed" from="LocalLeaderboard" to="LocalLeaderboard" method="_on_visibility_changed"]
 [connection signal="pressed" from="LocalLeaderboard/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="text_changed" from="HighScoreEntry/NameEntry" to="HighScoreEntry/NameEntry" method="_on_text_changed"]
 [connection signal="pressed" from="HighScoreEntry/NameSubmitButton" to="." method="_on_name_submit_button_pressed"]
