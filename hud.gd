@@ -12,16 +12,16 @@ func show_timed_message(text, time):
 	$GameScreen/Message.show()
 	$GameScreen/MessageTimer.wait_time = time
 	$GameScreen/MessageTimer.start()
-	
+
 func show_game_over(time, score):
 	if LocalHighScores.is_high_score(score):
 		$GameScreen.hide()
 		$HighScoreEntry.show()
 	else:
 		show_timed_message("Game Over", time)
-		
+
 		$GameScreen/RestartButton.show()
-		
+
 		# Wait until the MessageTimer has counted down.
 		await $GameScreen/MessageTimer.timeout
 
@@ -29,7 +29,7 @@ func show_game_over(time, score):
 			$GameScreen/RestartButton.hide()
 			$GameScreen.hide()
 			$MainMenu.show()
-		
+
 func show_high_score(score):
 	$GameScreen.hide()
 	$HighScoreEntry/PlayerScore.text = str(score)
