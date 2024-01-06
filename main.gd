@@ -66,8 +66,6 @@ func _on_obstacle_timer_timeout():
 			high_jump = true
 	else:
 		water_gate_streak += 1
-	print(water_gate_streak)
-	print(height)
 	
 	obstacle_spawn_location.progress_ratio = height
 
