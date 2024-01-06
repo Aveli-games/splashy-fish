@@ -7,6 +7,7 @@ var obstacle_gap_size
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Player.start($StartPosition.position)
+	LocalHighScores.load()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -15,9 +16,12 @@ func _process(delta):
 func game_over():
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
-	$HUD.show_game_over($GameOverSound.stream.get_length())
-	$Music.stop()
-	$GameOverSound.play()
+	if LocalHighScores.is_high_score(score):
+		$HUD.show_high_score(score)
+	else:
+		$HUD.show_game_over($GameOverSound.stream.get_length(), score)
+		$Music.stop()
+		$GameOverSound.play()
 
 func new_game():
 	score = 0
