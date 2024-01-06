@@ -4,46 +4,71 @@ extends CanvasLayer
 signal start_game
 
 func show_message(text):
-	$Message.text = text
-	$Message.show()
+	$GameScreen/Message.text = text
+	$GameScreen/Message.show()
 
 func show_timed_message(text, time):
-	$Message.text = text
-	$Message.show()
-	$MessageTimer.wait_time = time
-	$MessageTimer.start()
+	$GameScreen/Message.text = text
+	$GameScreen/Message.show()
+	$GameScreen/MessageTimer.wait_time = time
+	$GameScreen/MessageTimer.start()
+	
+func show_game_over(time, score):
+	if LocalHighScores.is_high_score(score):
+		$GameScreen.hide()
+		$HighScoreEntry.show()
+	else:
+		show_timed_message("Game Over", time)
+		
+		$GameScreen/RestartButton.show()
+		
+		# Wait until the MessageTimer has counted down.
+		await $GameScreen/MessageTimer.timeout
 
-func show_game_over(time):
-	show_timed_message("Game Over", time)
-
-	$StartButton.show()
-
-	# Wait until the MessageTimer has counted down.
-	await $MessageTimer.timeout
-
-	if $StartButton.visible:
-		show_message("Survive!")
-
-		await get_tree().create_timer(1.0).timeout
-
-
+		if $GameScreen/RestartButton.visible:
+			$GameScreen/RestartButton.hide()
+			$GameScreen.hide()
+			$MainMenu.show()
+		
+func show_high_score(score):
+	$GameScreen.hide()
+	$HighScoreEntry/PlayerScore.text = str(score)
+	$HighScoreEntry.show()
 
 func update_score(score):
-	$ScoreLabel.text = str(score)
+	$GameScreen/ScoreLabel.text = str(score)
 
 func _on_message_timer_timeout():
-	$Message.hide()
+	$GameScreen/Message.hide()
 
 func _on_start_button_pressed():
-	$StartButton.hide()
-	$Message.hide()
-	$MessageTimer.stop()
+	$MainMenu.hide()
+	$GameScreen.show()
+	$GameScreen/RestartButton.hide()
+	$GameScreen/Message.hide()
+	$GameScreen/MessageTimer.stop()
 	start_game.emit()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_scoreboard_button_pressed():
+	$MainMenu.hide()
+	$LocalLeaderboard.show()
+
+
+func _on_name_submit_button_pressed():
+	LocalHighScores.submit_score($HighScoreEntry/NameEntry.text, $HighScoreEntry/PlayerScore.text)
+	$HighScoreEntry.hide()
+	$LocalLeaderboard.show()
+
+
+func _on_main_menu_button_pressed():
+	for child in get_children():
+		child.hide()
+	$MainMenu.show()
