@@ -1,6 +1,7 @@
 extends Node
 
 const SCORE_SAVE_PATH = "user://local_high_scores.json"
+const ENCRYPTION_PASS = "keytochangeforrelease"
 
 var version = 1
 
@@ -12,12 +13,12 @@ func save():
 	if scores.size() > HIGH_SCORE_COUNT_LIMIT:
 		scores.resize(HIGH_SCORE_COUNT_LIMIT)
 	
-	var file = FileAccess.open(SCORE_SAVE_PATH, FileAccess.WRITE)
+	var file = FileAccess.open_encrypted_with_pass(SCORE_SAVE_PATH, FileAccess.WRITE, ENCRYPTION_PASS)
 	file.store_string(JSON.stringify(scores))
 	file.close()
 
 func load():
-	var file = FileAccess.open(SCORE_SAVE_PATH, FileAccess.READ)
+	var file = FileAccess.open_encrypted_with_pass(SCORE_SAVE_PATH, FileAccess.READ, ENCRYPTION_PASS)
 	if file:
 		var json = JSON.new()
 		var data = json.parse_string(file.get_as_text())
