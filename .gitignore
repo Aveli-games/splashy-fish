@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 *.tmp
+
+# JS stuff
+server/node_modules/
+
+# IDE stuff
+.idea

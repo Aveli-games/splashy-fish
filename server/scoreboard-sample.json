@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "name": "ABC",
+      "score": 123
+    },
+    {
+      "name": "CMA",
+      "score": 17
+    },
+    {"name": "BUM", "score":  2}
+  ]
+}
