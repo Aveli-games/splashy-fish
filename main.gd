@@ -1,8 +1,15 @@
 extends Node
 
 @export var obstacle_scene: PackedScene
+
+const HIGH_JUMP_VALUE = .9
+const WATER_GATE_VALUE = .25
+
 var score
 var obstacle_gap_size
+var rng = RandomNumberGenerator.new()
+var high_jump = false
+var water_gate_streak = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +27,7 @@ func game_over():
 	$GameOverSound.play()
 
 func new_game():
+	rng.seed = hash("FlappyFish")
 	score = 0
 	obstacle_gap_size = 300
 	$HUD.update_score("Score: %s" % score)
@@ -34,7 +42,30 @@ func _on_obstacle_timer_timeout():
 
 	# Choose a random location on Path2D.
 	var obstacle_spawn_location = get_node("ObstaclePath/ObstacleSpawnLocation")
-	obstacle_spawn_location.progress_ratio = randf()
+	var height = rng.randf()
+	
+	## Reroll if previous was a high jump
+	while high_jump:
+		height = rng.randf()
+		if height > HIGH_JUMP_VALUE:
+			high_jump = false
+	
+	while water_gate_streak > 2:
+		height = rng.randf()
+		if height < WATER_GATE_VALUE:
+			water_gate_streak = 0
+	
+	# Check height to add to or reset water gate streak or indicate high jump encountered
+	if height < WATER_GATE_VALUE:
+		water_gate_streak = 0
+		if height <= HIGH_JUMP_VALUE:
+			high_jump = true
+	else:
+		water_gate_streak += 1
+	print(water_gate_streak)
+	print(height)
+	
+	obstacle_spawn_location.progress_ratio = height
 
 	# Set the obstacle's position to a random location.
 	obstacle.position = obstacle_spawn_location.position
