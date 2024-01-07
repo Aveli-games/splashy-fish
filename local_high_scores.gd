@@ -20,8 +20,7 @@ func save():
 func load():
 	var file = FileAccess.open_encrypted_with_pass(SCORE_SAVE_PATH, FileAccess.READ, ENCRYPTION_PASS)
 	if file:
-		var json = JSON.new()
-		var data = json.parse_string(file.get_as_text())
+		var data = JSON.parse_string(file.get_as_text())
 		file.close()
 
 		if typeof(data) == TYPE_ARRAY:
@@ -55,12 +54,12 @@ func get_score_rank(score):
 				rank = scores.find(entry) + 1
 	return rank
 
-func submit_score(name, score):
+func submit_score(initials, score):
 	var rank = get_score_rank(score)
 
 	# Check if it's a high score (rank less than max count)
 	if rank < HIGH_SCORE_COUNT_LIMIT:
-		scores.insert(rank, {"name": name, "score": score})
+		scores.insert(rank, {"name": initials, "score": score})
 		save()
 		return true
 
