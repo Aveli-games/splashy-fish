@@ -17,7 +17,8 @@ config/icon="res://art/sprites/player/fish_watercolor_neutral.png"
 
 [autoload]
 
-LocalHighScores="*res://local_high_scores.gd"
+LocalHighScores="*res://autoloads/local_high_scores.gd"
+GlobalHighScores="*res://autoloads/global_high_scores.gd"
 
 [display]
 
