@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=15 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
 [ext_resource type="PackedScene" uid="uid://j47r672at4fb" path="res://obstacle_wall.tscn" id="2_dpaam"]
 [ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="4_0dutb"]
 [ext_resource type="PackedScene" uid="uid://x3oe10u0lnm6" path="res://hud.tscn" id="4_8fpnk"]
+[ext_resource type="Script" path="res://moving_background.gd" id="5_0c8bv"]
 [ext_resource type="AudioStream" uid="uid://d5m5epf1lwu8" path="res://sound/fish1_dead.wav" id="6_0uv8k"]
-[ext_resource type="PackedScene" uid="uid://betx7xg7eqa2d" path="res://score_http.tscn" id="7_ib5i2"]
+[ext_resource type="Texture2D" uid="uid://cd6o37idatsij" path="res://art/water-1-repeat.png" id="6_s345y"]
+[ext_resource type="PackedScene" path="res://score_http.tscn" id="7_ib5i2"]
+[ext_resource type="Texture2D" uid="uid://bhh11byqbwupu" path="res://art/water-1.png" id="8_og6te"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
 size = Vector2(150.235, 272)
@@ -29,8 +32,10 @@ loop = true
 [node name="Main" type="Node"]
 script = ExtResource("1_tw7s1")
 obstacle_scene = ExtResource("2_dpaam")
+metadata/_edit_vertical_guides_ = [1804.0]
 
 [node name="Air" type="Area2D" parent="."]
+visible = false
 scale = Vector2(8.52, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Air"]
@@ -53,10 +58,35 @@ shape = SubResource("RectangleShape2D_pl85p")
 debug_color = Color(0, 0.6, 0.701961, 0.490196)
 
 [node name="Water" type="ColorRect" parent="."]
+visible = false
 offset_top = 272.0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.0352941, 0.427451, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -133.0
+offset_top = -121.0
+offset_right = 1467.0
+offset_bottom = 1039.0
+texture = ExtResource("8_og6te")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("5_0c8bv")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+texture_repeat = 3
+motion_mirroring = Vector2(1804, 2.08165e-12)
+
+[node name="TextureRect2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1803.0
+offset_bottom = 760.0
+texture = ExtResource("6_s345y")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="Player" parent="." instance=ExtResource("1_vm42q")]
 position = Vector2(-104, 40)

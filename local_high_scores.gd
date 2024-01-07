@@ -12,7 +12,7 @@ var scores = []
 func save():
 	if scores.size() > HIGH_SCORE_COUNT_LIMIT:
 		scores.resize(HIGH_SCORE_COUNT_LIMIT)
-	
+
 	var file = FileAccess.open_encrypted_with_pass(SCORE_SAVE_PATH, FileAccess.WRITE, ENCRYPTION_PASS)
 	file.store_string(JSON.stringify(scores))
 	file.close()
@@ -29,7 +29,7 @@ func load():
 			printerr("Corrupted data!")
 	else:
 		printerr("No saved data!")
-		
+
 func is_high_score(score):
 	return HIGH_SCORE_COUNT_LIMIT > get_score_rank(score)
 
@@ -50,7 +50,7 @@ func get_score_rank(score):
 
 func submit_score(name, score):
 	var rank = get_score_rank(score)
-	
+
 	# Check if it's a high score (rank less than max count)
 	if rank < HIGH_SCORE_COUNT_LIMIT:
 		scores.insert(rank, {"Name": name, "Score": score})

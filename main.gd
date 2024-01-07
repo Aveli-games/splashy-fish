@@ -47,18 +47,18 @@ func _on_obstacle_timer_timeout():
 	# Choose a random location on Path2D.
 	var obstacle_spawn_location = get_node("ObstaclePath/ObstacleSpawnLocation")
 	var height = rng.randf()
-	
+
 	## Reroll if previous was a high jump
 	while high_jump:
 		height = rng.randf()
 		if height > HIGH_JUMP_VALUE:
 			high_jump = false
-	
+
 	while water_gate_streak > 2:
 		height = rng.randf()
 		if height < WATER_GATE_VALUE:
 			water_gate_streak = 0
-	
+
 	# Check height to add to or reset water gate streak or indicate high jump encountered
 	if height < WATER_GATE_VALUE:
 		water_gate_streak = 0
@@ -66,7 +66,7 @@ func _on_obstacle_timer_timeout():
 			high_jump = true
 	else:
 		water_gate_streak += 1
-	
+
 	obstacle_spawn_location.progress_ratio = height
 
 	# Set the obstacle's position to a random location.
