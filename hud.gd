@@ -59,13 +59,13 @@ func _process(delta):
 
 func _on_scoreboard_button_pressed():
 	$MainMenu.hide()
-	$LocalLeaderboard.show()
+	$Leaderboards.show()
 
 
 func _on_name_submit_button_pressed():
 	LocalHighScores.submit_score($HighScoreEntry/NameEntry.text, $HighScoreEntry/PlayerScore.text)
 	$HighScoreEntry.hide()
-	$LocalLeaderboard.show()
+	$Leaderboards.show()
 
 
 func _on_main_menu_button_pressed():
