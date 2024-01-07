@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cp6swo8p0hpag"]
+[gd_scene load_steps=2 format=3 uid="uid://cp6swo8p0hpag"]
+
+[sub_resource type="Theme" id="Theme_3yaa0"]
+default_font_size = 28
 
 [node name="GameScore" type="HBoxContainer"]
 anchors_preset = 5
@@ -6,29 +9,27 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -395.0
 offset_right = 395.0
-offset_bottom = 67.0
+offset_bottom = 39.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_3yaa0")
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Rank" type="Label" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
 text = "#10"
 horizontal_alignment = 2
 
 [node name="Name" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
 text = "PLC"
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
 text = "1000000000000000"
 text_overrun_behavior = 3

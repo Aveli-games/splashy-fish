@@ -1,15 +1,15 @@
 extends VBoxContainer
 
-# Called when the node enters the scene tree for the first time.
+@export var global: bool
+
 func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+	if global:
+		$Title.text = 'Global'
 
 func _on_visibility_changed():
 	if visible:
-		$ScoresScroll/HighScores.populate_scoreboard()
-		$ScoresScroll.scroll_vertical = 0
+		if global:
+			# TODO: make scoreboard reactive. Can be behind since http is async
+			$HighScores.populate_scoreboard(GlobalHighScores.scores)
+		else:
+			$HighScores.populate_scoreboard(LocalHighScores.scores)

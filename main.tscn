@@ -112,8 +112,6 @@ stream = SubResource("AudioStreamOggVorbis_7thcu")
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_0uv8k")
 
-[node name="OnlineScores" parent="." instance=ExtResource("7_ib5i2")]
-
 [connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Player" to="Player" method="_on_area_exited"]
 [connection signal="hit" from="Player" to="." method="game_over"]

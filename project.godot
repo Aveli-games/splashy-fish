@@ -13,11 +13,12 @@ config_version=5
 config/name="flappy_fish"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://art/sprites/player/fish_neutral.png"
+config/icon="res://art/sprites/player/fish_watercolor_neutral.png"
 
 [autoload]
 
-LocalHighScores="*res://local_high_scores.gd"
+LocalHighScores="*res://autoloads/local_high_scores.gd"
+GlobalHighScores="*res://autoloads/global_high_scores.gd"
 
 [display]
 

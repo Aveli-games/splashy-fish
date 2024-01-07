@@ -49,23 +49,18 @@ func _on_start_button_pressed():
 	$GameScreen/MessageTimer.stop()
 	start_game.emit()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_scoreboard_button_pressed():
 	$MainMenu.hide()
-	$LocalLeaderboard.show()
+	$Leaderboards.show()
 
 
 func _on_name_submit_button_pressed():
-	LocalHighScores.submit_score($HighScoreEntry/NameEntry.text, $HighScoreEntry/PlayerScore.text)
+	var initials = $HighScoreEntry/NameEntry.text
+	var score = $HighScoreEntry/PlayerScore.text
+	LocalHighScores.submit_score(initials, score)
+	GlobalHighScores.post_score(initials, int(score))
 	$HighScoreEntry.hide()
-	$LocalLeaderboard.show()
+	$Leaderboards.show()
 
 
 func _on_main_menu_button_pressed():

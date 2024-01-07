@@ -16,10 +16,6 @@ func _ready():
 	$Player.start($StartPosition.position)
 	LocalHighScores.load()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func game_over():
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
