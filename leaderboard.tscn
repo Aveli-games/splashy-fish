@@ -12,7 +12,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -416.0
 offset_top = -316.0
-offset_right = 382.0
+offset_right = 184.0
 offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -22,7 +22,7 @@ script = ExtResource("1_l6m3a")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "High Scores"
+text = "Local"
 horizontal_alignment = 1
 
 [node name="HighScores" type="VBoxContainer" parent="." groups=["HighScores"]]

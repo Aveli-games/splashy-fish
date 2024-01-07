@@ -2,10 +2,10 @@ extends VBoxContainer
 
 @export var game_score_scene: PackedScene
 
-func populate_scoreboard():
+func populate_scoreboard(scores):
 	clean_scoreboard()
 	var rank = 1
-	for entry in LocalHighScores.scores:
+	for entry in scores:
 		var new_score = game_score_scene.instantiate()
 		new_score.get_node("Rank").text = "#%s" % str(rank)
 		new_score.get_node("Name").text = entry["name"]

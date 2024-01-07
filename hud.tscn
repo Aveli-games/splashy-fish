@@ -126,6 +126,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="Title" type="Label" parent="Leaderboards"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "High Scores"
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Leaderboards"]
 layout_mode = 2
 alignment = 1
@@ -135,6 +142,7 @@ layout_mode = 2
 
 [node name="GlobalLeaderboard" parent="Leaderboards/HBoxContainer" instance=ExtResource("2_wo5dk")]
 layout_mode = 2
+global = true
 
 [node name="MainMenuButton" type="Button" parent="Leaderboards"]
 layout_mode = 2
