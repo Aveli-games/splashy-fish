@@ -73,7 +73,7 @@ func _process(delta):
 	rotation = -MAX_ROTATION * (speed / MAX_SPEED)
 
 
-func _on_body_entered(body):
+func _on_body_entered():
 	hide() # Disappear after being hit
 	hit.emit()
 	$Hitbox.set_deferred("disabled", true)
