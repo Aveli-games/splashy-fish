@@ -23,8 +23,10 @@ func load():
 		var json = JSON.new()
 		var data = json.parse_string(file.get_as_text())
 		file.close()
-		print(data)
+
 		if typeof(data) == TYPE_ARRAY:
+			# for backward compat, only needed for cam & tris once.
+			# Replace if/else with just scores=data afterward
 			if data.size() > 0 && data[0].has("Name"):
 				scores = _convert_score_file(data)
 				save()
@@ -62,6 +64,7 @@ func submit_score(name, score):
 		save()
 		return true
 
+# for backward compat, only needed for cam & tris once
 func _convert_score_file(data):
 	for entry in data:
 		if entry["Name"]:
