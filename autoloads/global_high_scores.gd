@@ -3,8 +3,8 @@ extends Node
 var scores = []
 var error = false
 var http = HTTPRequest.new()
-var server_url = "https://warm-abacus-410306.uw.r.appspot.com/"
-#var server_url = "http://localhost:3000"
+#var server_url = "https://warm-abacus-410306.uw.r.appspot.com/"
+var server_url = "http://localhost:3000"
 
 func _ready():
 	add_child(http)

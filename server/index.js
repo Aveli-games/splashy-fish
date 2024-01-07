@@ -51,8 +51,14 @@ app.use(async function(ctx, next) {
 // GET to get scoreboard
 app.use(async function(ctx, next) {
     if ('GET' !== ctx.method) return await next();
-    // load scoreboard from local file?
-    ctx.body = sampleScores
+    // TODO: load scoreboard from local file
+    
+    const scoreUpdated = false
+    if (memoryScores.length > 0) {
+        ctx.body = {data: memoryScores, scoreUpdated}
+    } else {
+        ctx.body = {data: sampleScores.data, scoreUpdated}
+    }
 });
 
 app.listen(process.env.PORT || 3000);
