@@ -25,7 +25,7 @@ func load():
 		file.close()
 		print(data)
 		if typeof(data) == TYPE_ARRAY:
-			if data.size() > 0 && data[0]["Name"]:
+			if data.size() > 0 && data[0].has("Name"):
 				scores = _convert_score_file(data)
 				save()
 			else:
