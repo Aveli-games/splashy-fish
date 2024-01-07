@@ -31,6 +31,8 @@ func game_over():
 		$GameOverSound.play()
 
 func new_game():
+	high_jump = false
+	water_gate_streak = 0
 	rng.seed = hash("FlappyFish")
 	score = 0
 	obstacle_gap_size = 300
