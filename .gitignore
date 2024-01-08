@@ -4,6 +4,7 @@
 
 # JS stuff
 server/node_modules/
+server/scores.json
 
 # IDE stuff
 .idea

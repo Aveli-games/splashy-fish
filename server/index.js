@@ -2,13 +2,28 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const { koaBody } = require('koa-body');
 
+const fs = require('node:fs');
+
 const sampleScores = require('./scoreboard-sample.json')
 let memoryScores = []
 // let memoryScores = [{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 }].sort((a, b) => b.score - a.score).slice(0,10)
 
+try {
+    const persistedScores = fs.readFileSync('scores.json', 'utf8');
+    memoryScores = JSON.parse(persistedScores)
+    console.log(persistedScores)
+} catch (err) {
+    console.error(err);
+}
+
 const addScore = ({name, score}) => {
     memoryScores.push({name, score})
     memoryScores = memoryScores.sort((a, b) => b.score - a.score).slice(0,10)
+    try {
+        fs.writeFileSync('scores.json', JSON.stringify(memoryScores));
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 const handleScoreSubmit = ({name, score}) => {
@@ -51,8 +66,7 @@ app.use(async function(ctx, next) {
 // GET to get scoreboard
 app.use(async function(ctx, next) {
     if ('GET' !== ctx.method) return await next();
-    // TODO: load scoreboard from local file
-    
+
     const scoreUpdated = false
     if (memoryScores.length > 0) {
         ctx.body = {data: memoryScores, scoreUpdated}
