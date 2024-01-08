@@ -14,7 +14,9 @@ var velocity = Vector2.ZERO
 
 var in_air = false
 
-const CUTSCENE_SPEED = 100
+# x-speed stuff mainly for animating fish in/out
+const SWIM_IN_SPEED = 100
+const HIT_SPEED = -400
 var x_speed = 0
 var x_max = 200
 
@@ -32,11 +34,11 @@ func _process(delta):
 	var direction = 0
 
 	# use x direction for animation
-	print(position)
 	if position.x > x_max:
 		position.x = x_max
 		x_speed = 0
-	if position.x < 200 && x_speed < 0:
+	if position.x < -100 && x_speed < 0:
+		x_speed = 0
 		hide()
 
 
@@ -87,15 +89,15 @@ func _process(delta):
 
 
 func _on_body_entered(_body):
-	x_speed = -CUTSCENE_SPEED
+	x_speed = HIT_SPEED
 	hit.emit()
 	$Hitbox.set_deferred("disabled", true)
 
 func start(pos):
 	x_max = pos.x
-	position = Vector2(-2*CUTSCENE_SPEED, pos.y)
+	position = Vector2(-2*SWIM_IN_SPEED, pos.y)
 	speed = 0
-	x_speed = CUTSCENE_SPEED
+	x_speed = SWIM_IN_SPEED
 	show()
 	# Give 1 second of invulnerability at start to account for any old obstacles
 	await get_tree().create_timer(1.0).timeout
