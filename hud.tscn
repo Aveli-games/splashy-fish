@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://x3oe10u0lnm6"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
-[ext_resource type="PackedScene" uid="uid://ddwjg26xf12h1" path="res://leaderboard.tscn" id="2_wo5dk"]
+[ext_resource type="PackedScene" uid="uid://bu4hub4oo1x7a" path="res://leaderboard.tscn" id="2_wo5dk"]
 [ext_resource type="Script" path="res://name_entry.gd" id="5_a5jol"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -97,7 +97,7 @@ theme_override_constants/separation = 30
 [node name="Title" type="Label" parent="HighScoreEntry"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "High Score!"
+text = "Game Over"
 
 [node name="PlayerScore" type="Label" parent="HighScoreEntry"]
 layout_mode = 2

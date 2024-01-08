@@ -20,12 +20,9 @@ func game_over():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
-	if LocalHighScores.is_high_score(score):
-		$HUD.show_high_score(score)
-	else:
-		$HUD.show_game_over($GameOverSound.stream.get_length(), score)
-		$Music.stop()
-		$GameOverSound.play()
+	$Music.stop()
+	$GameOverSound.play()
+	$HUD.show_high_score(score)
 
 func new_game():
 	high_jump = false

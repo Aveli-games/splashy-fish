@@ -3,12 +3,18 @@ const logger = require('koa-logger');
 const { koaBody } = require('koa-body');
 
 const sampleScores = require('./scoreboard-sample.json')
+const {uploadFromMemory, downloadIntoMemory} = require("./storage");
 let memoryScores = []
 // let memoryScores = [{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 }].sort((a, b) => b.score - a.score).slice(0,10)
+
+downloadIntoMemory()
+    .then((data) => memoryScores = JSON.parse(data.toString()))
+    .catch(console.error);
 
 const addScore = ({name, score}) => {
     memoryScores.push({name, score})
     memoryScores = memoryScores.sort((a, b) => b.score - a.score).slice(0,10)
+    uploadFromMemory(JSON.stringify(memoryScores)).catch(console.error);
 }
 
 const handleScoreSubmit = ({name, score}) => {
@@ -51,8 +57,7 @@ app.use(async function(ctx, next) {
 // GET to get scoreboard
 app.use(async function(ctx, next) {
     if ('GET' !== ctx.method) return await next();
-    // TODO: load scoreboard from local file
-    
+
     const scoreUpdated = false
     if (memoryScores.length > 0) {
         ctx.body = {data: memoryScores, scoreUpdated}

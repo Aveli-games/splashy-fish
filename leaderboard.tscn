@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddwjg26xf12h1"]
+[gd_scene load_steps=4 format=3 uid="uid://bu4hub4oo1x7a"]
 
 [ext_resource type="Script" path="res://local_leaderboard.gd" id="1_l6m3a"]
 [ext_resource type="Script" path="res://high_scores.gd" id="2_y3ysu"]

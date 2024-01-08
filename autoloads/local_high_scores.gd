@@ -24,13 +24,7 @@ func load():
 		file.close()
 
 		if typeof(data) == TYPE_ARRAY:
-			# for backward compat, only needed for cam & tris once.
-			# Replace if/else with just scores=data afterward
-			if data.size() > 0 && data[0].has("Name"):
-				scores = _convert_score_file(data)
-				save()
-			else:
-				scores = data
+			scores = data
 		else:
 			printerr("Corrupted data!")
 	else:
@@ -62,17 +56,3 @@ func submit_score(initials, score):
 		scores.insert(rank, {"name": initials, "score": score})
 		save()
 		return true
-
-# for backward compat, only needed for cam & tris once
-func _convert_score_file(data):
-	for entry in data:
-		if entry["Name"]:
-			entry["name"] = entry["Name"]
-			entry.erase("Name")
-		if entry["Score"]:
-			entry["score"] = entry["Score"]
-			entry.erase("Score")
-	return data
-
-
-
