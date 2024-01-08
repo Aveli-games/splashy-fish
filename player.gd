@@ -14,6 +14,10 @@ var velocity = Vector2.ZERO
 
 var in_air = false
 
+const CUTSCENE_SPEED = 100
+var x_speed = 0
+var x_max = 200
+
 var screen_size
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +30,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = 0
+
+	# use x direction for animation
+	print(position)
+	if position.x > x_max:
+		position.x = x_max
+		x_speed = 0
+	if position.x < 200 && x_speed < 0:
+		hide()
 
 
 	if in_air:
@@ -48,12 +60,13 @@ func _process(delta):
 			else:
 				speed = 0
 	# Calc vector and change position
-	velocity = Vector2.UP * speed
+	velocity = Vector2(x_speed, -speed)
 
 	position += velocity * delta
 
 	# Prevent flying off bottom of screen
-	position = position.clamp(Vector2.ZERO, screen_size)
+	var pos
+	position.y = clamp(position.y, 0, screen_size.y)
 
 	# When player hits bottom, cancel all speed
 	if position.y == screen_size.y:
@@ -74,13 +87,15 @@ func _process(delta):
 
 
 func _on_body_entered(_body):
-	hide() # Disappear after being hit
+	x_speed = -CUTSCENE_SPEED
 	hit.emit()
 	$Hitbox.set_deferred("disabled", true)
 
 func start(pos):
-	position = pos
+	x_max = pos.x
+	position = Vector2(-2*CUTSCENE_SPEED, pos.y)
 	speed = 0
+	x_speed = CUTSCENE_SPEED
 	show()
 	# Give 1 second of invulnerability at start to account for any old obstacles
 	await get_tree().create_timer(1.0).timeout
