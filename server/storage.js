@@ -8,14 +8,14 @@ const {Storage} = require('@google-cloud/storage');
 // Creates a client
 const storage = new Storage();
 
-export async function uploadFromMemory(contents) {
+async function uploadFromMemory(contents) {
     await storage.bucket(bucketName).file(fileName).save(contents);
 
     console.log(
         `${fileName} with contents ${contents} uploaded to ${bucketName}.`
     );
 }
-export async function downloadIntoMemory() {
+async function downloadIntoMemory() {
     // Downloads the file into a buffer in memory.
     const contents = await storage.bucket(bucketName).file(fileName).download();
 
@@ -23,4 +23,9 @@ export async function downloadIntoMemory() {
         `Contents of gs://${bucketName}/${fileName} are ${contents.toString()}.`
     );
     return contents
+}
+
+module.exports = {
+    downloadIntoMemory,
+    uploadFromMemory
 }
