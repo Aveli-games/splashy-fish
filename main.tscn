@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=18 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ca71wyi1a8u42" path="res://art/sky.png" id="5_ryrkb"]
 [ext_resource type="AudioStream" uid="uid://d5m5epf1lwu8" path="res://sound/fish1_dead.wav" id="6_0uv8k"]
 [ext_resource type="AudioStream" uid="uid://cntm3k6tx7fwk" path="res://sound/water_exit.wav" id="6_gav3u"]
+[ext_resource type="AudioStream" uid="uid://dc88a38e10efv" path="res://sound/fish1.wav" id="13_8aaa8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
 size = Vector2(150.235, 272)
@@ -153,6 +154,9 @@ stream = SubResource("AudioStreamOggVorbis_7thcu")
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_0uv8k")
 
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_8aaa8")
+
 [connection signal="area_entered" from="Air" to="Air" method="_on_area_entered"]
 [connection signal="area_exited" from="Air" to="Air" method="_on_area_exited"]
 [connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
@@ -161,4 +165,5 @@ stream = ExtResource("6_0uv8k")
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="main_menu_shown" from="HUD" to="." method="_on_hud_main_menu_shown"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
