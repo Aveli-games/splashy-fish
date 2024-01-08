@@ -17,6 +17,7 @@ func _ready():
 	LocalHighScores.load()
 
 func game_over():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
 	if LocalHighScores.is_high_score(score):
@@ -34,6 +35,7 @@ func new_game():
 	obstacle_gap_size = 300
 	$HUD.update_score("Score: %s" % score)
 	$HUD.show_timed_message("Get Ready", $StartTimer.wait_time)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$StartTimer.start()
 	$GameOverSound.stop()
 	$Music.play()
