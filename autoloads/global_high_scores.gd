@@ -1,10 +1,12 @@
 extends Node
 
+signal leaderboard_fetched
+
 var scores = []
 var error = false
 var http = HTTPRequest.new()
-var server_url = "https://warm-abacus-410306.uw.r.appspot.com/"
-#var server_url = "http://localhost:3000" # for local dev
+#var server_url = "https://warm-abacus-410306.uw.r.appspot.com/"
+var server_url = "http://localhost:3000" # for local dev
 
 func _ready():
 	add_child(http)
@@ -30,4 +32,5 @@ func _on_request_completed(_result, response_code, _headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	if json && json.has("data") && typeof(json["data"]) == TYPE_ARRAY:
 		scores = json["data"]
+		leaderboard_fetched.emit()
 

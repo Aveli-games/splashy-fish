@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=13 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://moving_background.gd" id="5_0c8bv"]
 [ext_resource type="AudioStream" uid="uid://d5m5epf1lwu8" path="res://sound/fish1_dead.wav" id="6_0uv8k"]
 [ext_resource type="Texture2D" uid="uid://cd6o37idatsij" path="res://art/water-1-repeat.png" id="6_s345y"]
-[ext_resource type="PackedScene" uid="uid://betx7xg7eqa2d" path="res://score_http.tscn" id="7_ib5i2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
 size = Vector2(150.235, 272)
