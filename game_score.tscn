@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp6swo8p0hpag"]
+[gd_scene load_steps=3 format=3 uid="uid://cp6swo8p0hpag"]
+
+[ext_resource type="Script" path="res://game_score.gd" id="1_5bvv3"]
 
 [sub_resource type="Theme" id="Theme_3yaa0"]
 default_font_size = 28
@@ -15,6 +17,7 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_3yaa0")
 theme_override_constants/separation = 20
 alignment = 1
+script = ExtResource("1_5bvv3")
 
 [node name="Rank" type="Label" parent="."]
 custom_minimum_size = Vector2(300, 0)

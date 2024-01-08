@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://x3oe10u0lnm6"]
+[gd_scene load_steps=5 format=3 uid="uid://x3oe10u0lnm6"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
 [ext_resource type="PackedScene" uid="uid://bu4hub4oo1x7a" path="res://leaderboard.tscn" id="2_wo5dk"]
+[ext_resource type="Script" path="res://title.gd" id="3_enc37"]
 [ext_resource type="Script" path="res://name_entry.gd" id="5_a5jol"]
 
 [node name="HUD" type="CanvasLayer"]
@@ -133,6 +134,7 @@ size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
 text = "High Scores"
 horizontal_alignment = 1
+script = ExtResource("3_enc37")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Leaderboards"]
 layout_mode = 2

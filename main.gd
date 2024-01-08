@@ -15,6 +15,7 @@ var water_gate_streak = 0
 func _ready():
 	$Player.start($StartPosition.position)
 	LocalHighScores.load()
+	LocalHighScores.high_score.connect(_on_high_score)
 
 func game_over():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -88,3 +89,8 @@ func _on_start_timer_timeout():
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score("Score: %s" % score)
+	
+func _on_high_score(rank):
+	$Music.stop()
+	$GameOverSound.stop()
+	$HighScoreSound.play()

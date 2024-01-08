@@ -1,5 +1,7 @@
 extends Node
 
+signal high_score
+
 const SCORE_SAVE_PATH = "user://local_high_scores.json"
 const ENCRYPTION_PASS = "keytochangeforrelease"
 
@@ -55,4 +57,5 @@ func submit_score(initials, score):
 	if rank < HIGH_SCORE_COUNT_LIMIT:
 		scores.insert(rank, {"name": initials, "score": score})
 		save()
+		high_score.emit(rank)
 		return true

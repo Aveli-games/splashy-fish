@@ -53,17 +53,17 @@ func _on_scoreboard_button_pressed():
 	$MainMenu.hide()
 	$Leaderboards.show()
 
-
 func _on_name_submit_button_pressed():
-	var initials = $HighScoreEntry/NameEntry.text
-	var score = $HighScoreEntry/PlayerScore.text
-	LocalHighScores.submit_score(initials, score)
-	GlobalHighScores.post_score(initials, int(score))
-	$HighScoreEntry.hide()
-	$Leaderboards.show()
-
+	if $HighScoreEntry/NameEntry.text.length() == $HighScoreEntry/NameEntry.max_length:
+		var initials = $HighScoreEntry/NameEntry.text
+		var score = $HighScoreEntry/PlayerScore.text
+		LocalHighScores.submit_score(initials, score)
+		GlobalHighScores.post_score(initials, int(score))
+		$HighScoreEntry.hide()
+		$Leaderboards.show()
 
 func _on_main_menu_button_pressed():
 	for child in get_children():
 		child.hide()
 	$MainMenu.show()
+	$Leaderboards/Title.reset()
