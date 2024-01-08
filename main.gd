@@ -15,13 +15,13 @@ var water_gate_streak = 0
 func _ready():
 	$Player.start($StartPosition.position)
 	LocalHighScores.load()
+	change_music($MainMenuMusic)
 
 func game_over():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$ScoreTimer.stop()
 	$ObstacleTimer.stop()
-	$Music.stop()
-	$GameOverSound.play()
+	change_music($GameOverSound)
 	$HUD.show_high_score(score)
 
 func new_game():
@@ -34,8 +34,13 @@ func new_game():
 	$HUD.show_timed_message("Get Ready", $StartTimer.wait_time)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$StartTimer.start()
+	change_music($Music)
+	
+func change_music(music_node):
+	$Music.stop()
 	$GameOverSound.stop()
-	$Music.play()
+	$MainMenuMusic.stop()
+	music_node.play()
 
 func _on_obstacle_timer_timeout():
 	# Create a new instance of the obstacle scene.
@@ -88,3 +93,6 @@ func _on_start_timer_timeout():
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score("Score: %s" % score)
+
+func _on_hud_main_menu_shown():
+	change_music($MainMenuMusic)

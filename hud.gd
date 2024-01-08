@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
+signal main_menu_shown
 
 func show_message(text):
 	$GameScreen/Message.text = text
@@ -53,7 +54,6 @@ func _on_scoreboard_button_pressed():
 	$MainMenu.hide()
 	$Leaderboards.show()
 
-
 func _on_name_submit_button_pressed():
 	var initials = $HighScoreEntry/NameEntry.text
 	var score = $HighScoreEntry/PlayerScore.text
@@ -62,8 +62,11 @@ func _on_name_submit_button_pressed():
 	$HighScoreEntry.hide()
 	$Leaderboards.show()
 
-
 func _on_main_menu_button_pressed():
 	for child in get_children():
 		child.hide()
 	$MainMenu.show()
+
+func _on_main_menu_visibility_changed():
+	if $MainMenu.visible:
+		main_menu_shown.emit()
