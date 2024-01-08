@@ -50,8 +50,9 @@ func _process(delta):
 			direction = 1
 		if Input.is_action_pressed("swim_down"):
 			direction = -1
-		# Apply the swim impulse
-		speed += acceleration * delta * direction
+		# Apply the swim impulse if onscreen
+		if position.x > 0:
+			speed += acceleration * delta * direction
 
 		# Apply constant drag against movement if no direction input
 		if not direction:
