@@ -5,6 +5,7 @@
 # JS stuff
 server/node_modules/
 server/scores.json
+server/.env
 
 # IDE stuff
 .idea

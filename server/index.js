@@ -2,28 +2,19 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const { koaBody } = require('koa-body');
 
-const fs = require('node:fs');
-
 const sampleScores = require('./scoreboard-sample.json')
+const {uploadFromMemory, downloadIntoMemory} = require("./storage");
 let memoryScores = []
 // let memoryScores = [{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 }].sort((a, b) => b.score - a.score).slice(0,10)
 
-try {
-    const persistedScores = fs.readFileSync('scores.json', 'utf8');
-    memoryScores = JSON.parse(persistedScores)
-    console.log(persistedScores)
-} catch (err) {
-    console.error(err);
-}
+downloadIntoMemory()
+    .then((data) => memoryScores = JSON.parse(data.toString()))
+    .catch(console.error);
 
 const addScore = ({name, score}) => {
     memoryScores.push({name, score})
     memoryScores = memoryScores.sort((a, b) => b.score - a.score).slice(0,10)
-    try {
-        fs.writeFileSync('scores.json', JSON.stringify(memoryScores));
-    } catch (err) {
-        console.error(err);
-    }
+    uploadFromMemory(JSON.stringify(memoryScores)).catch(console.error);
 }
 
 const handleScoreSubmit = ({name, score}) => {
