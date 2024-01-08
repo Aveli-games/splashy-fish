@@ -1,14 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=16 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
 [ext_resource type="PackedScene" uid="uid://j47r672at4fb" path="res://obstacle_wall.tscn" id="2_dpaam"]
+[ext_resource type="Script" path="res://air.gd" id="3_hra5n"]
 [ext_resource type="Texture2D" uid="uid://dy2doeee2u4of" path="res://art/1x1_#FFFFFFFF.png" id="4_0dutb"]
 [ext_resource type="PackedScene" uid="uid://x3oe10u0lnm6" path="res://hud.tscn" id="4_8fpnk"]
 [ext_resource type="Script" path="res://moving_background.gd" id="5_0c8bv"]
+[ext_resource type="AudioStream" uid="uid://bd4ut6vp2iyvt" path="res://sound/water_enter.wav" id="5_5ggbc"]
 [ext_resource type="AudioStream" uid="uid://d5m5epf1lwu8" path="res://sound/fish1_dead.wav" id="6_0uv8k"]
+[ext_resource type="AudioStream" uid="uid://cntm3k6tx7fwk" path="res://sound/water_exit.wav" id="6_gav3u"]
 [ext_resource type="Texture2D" uid="uid://cd6o37idatsij" path="res://art/water-1-repeat.png" id="6_s345y"]
-[ext_resource type="PackedScene" uid="uid://betx7xg7eqa2d" path="res://score_http.tscn" id="7_ib5i2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
 size = Vector2(150.235, 272)
@@ -36,6 +38,7 @@ metadata/_edit_vertical_guides_ = [1804.0]
 [node name="Air" type="Area2D" parent="."]
 visible = false
 scale = Vector2(8.52, 1)
+script = ExtResource("3_hra5n")
 
 [node name="Sprite2D" type="Sprite2D" parent="Air"]
 position = Vector2(3.8147e-06, 0)
@@ -55,6 +58,13 @@ color = Color(0, 0.823529, 1, 1)
 position = Vector2(75.1173, 136)
 shape = SubResource("RectangleShape2D_pl85p")
 debug_color = Color(0, 0.6, 0.701961, 0.490196)
+
+[node name="EnterWater" type="AudioStreamPlayer" parent="Air"]
+stream = ExtResource("5_5ggbc")
+volume_db = -10.0
+
+[node name="ExitWater" type="AudioStreamPlayer" parent="Air"]
+stream = ExtResource("6_gav3u")
 
 [node name="Water" type="ColorRect" parent="."]
 visible = false
@@ -112,6 +122,8 @@ stream = SubResource("AudioStreamOggVorbis_7thcu")
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_0uv8k")
 
+[connection signal="area_entered" from="Air" to="Air" method="_on_area_entered"]
+[connection signal="area_exited" from="Air" to="Air" method="_on_area_exited"]
 [connection signal="area_entered" from="Player" to="Player" method="_on_area_entered"]
 [connection signal="area_exited" from="Player" to="Player" method="_on_area_exited"]
 [connection signal="hit" from="Player" to="." method="game_over"]
