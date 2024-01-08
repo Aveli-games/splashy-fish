@@ -67,7 +67,6 @@ func _process(delta):
 	position += velocity * delta
 
 	# Prevent flying off bottom of screen
-	var pos
 	position.y = clamp(position.y, 0, screen_size.y)
 
 	# When player hits bottom, cancel all speed
