@@ -42,6 +42,7 @@ func change_music(music_node):
 	$Music.stop()
 	$GameOverSound.stop()
 	$MainMenuMusic.stop()
+	$HighScoreSound.stop()
 	music_node.play()
 
 func _on_obstacle_timer_timeout():
