@@ -57,6 +57,7 @@ func _on_start_button_pressed():
 	start_game.emit()
 
 func _on_scoreboard_button_pressed():
+	GlobalHighScores.fetch_scores()
 	$MainMenu.hide()
 	$Leaderboards.show()
 

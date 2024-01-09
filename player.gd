@@ -70,9 +70,9 @@ func _process(delta):
 	# Prevent flying off bottom of screen
 	position.y = clamp(position.y, 0, screen_size.y)
 
-	# When player hits bottom, cancel all speed
+	# When player hits bottom, bounce off
 	if position.y == screen_size.y:
-		speed = 0
+		speed = -speed/2
 	else:
 		speed = clamp(speed, -MAX_SPEED, MAX_SPEED)
 
