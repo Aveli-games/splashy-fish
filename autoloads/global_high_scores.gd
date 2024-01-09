@@ -1,6 +1,7 @@
 extends Node
 
 signal leaderboard_fetched
+signal global_high_score
 
 var scores = []
 var error = false
@@ -33,4 +34,6 @@ func _on_request_completed(_result, response_code, _headers, body):
 	if json && json.has("data") && typeof(json["data"]) == TYPE_ARRAY:
 		scores = json["data"]
 		leaderboard_fetched.emit()
+	if json && json.has("scoreUpdated") && json["scoreUpdated"] == true:
+		global_high_score.emit()
 

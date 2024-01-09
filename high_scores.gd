@@ -15,4 +15,4 @@ func populate_scoreboard(scores):
 
 func clean_scoreboard():
 	for child in get_children():
-		child.queue_free()
+		child.free() # Need to free child immediately so we don't double up scores briefly
