@@ -25,7 +25,7 @@ theme_override_constants/separation = 40
 [node name="GameTitle" type="Label" parent="MainMenu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = "Flappy Fish"
+text = "Splashy Fish"
 
 [node name="StartButton" type="Button" parent="MainMenu"]
 layout_mode = 2
@@ -154,6 +154,7 @@ size_flags_vertical = 10
 theme_override_font_sizes/font_size = 64
 text = "Main Menu"
 
+[connection signal="visibility_changed" from="MainMenu" to="." method="_on_main_menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/ScoreboardButton" to="." method="_on_scoreboard_button_pressed"]
 [connection signal="pressed" from="GameScreen/RestartButton" to="." method="_on_start_button_pressed"]

@@ -2,6 +2,13 @@ extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
+signal main_menu_shown
+
+var initials = ""
+var score = 0
+
+func _ready():
+	GlobalHighScores.global_high_score.connect(_on_global_high_score)
 
 func show_message(text):
 	$GameScreen/Message.text = text
@@ -14,7 +21,7 @@ func show_timed_message(text, time):
 	$GameScreen/MessageTimer.start()
 
 func show_game_over(time, score):
-	if LocalHighScores.is_high_score(score):
+	if LocalHighScores.is_local_high_score(score):
 		$GameScreen.hide()
 		$HighScoreEntry.show()
 	else:
@@ -55,8 +62,8 @@ func _on_scoreboard_button_pressed():
 
 func _on_name_submit_button_pressed():
 	if $HighScoreEntry/NameEntry.text.length() == $HighScoreEntry/NameEntry.max_length:
-		var initials = $HighScoreEntry/NameEntry.text
-		var score = $HighScoreEntry/PlayerScore.text
+		initials = $HighScoreEntry/NameEntry.text
+		score = $HighScoreEntry/PlayerScore.text
 		LocalHighScores.submit_score(initials, score)
 		GlobalHighScores.post_score(initials, int(score))
 		$HighScoreEntry.hide()
@@ -67,3 +74,10 @@ func _on_main_menu_button_pressed():
 		child.hide()
 	$MainMenu.show()
 	$Leaderboards/Title.reset()
+
+func _on_main_menu_visibility_changed():
+	if $MainMenu.visible:
+		main_menu_shown.emit()
+
+func _on_global_high_score():
+	$Leaderboards/HBoxContainer/GlobalLeaderboard.highlight_global_score(initials, score)
