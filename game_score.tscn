@@ -4,6 +4,7 @@
 
 [sub_resource type="FontVariation" id="FontVariation_o4cbe"]
 variation_embolden = 1.0
+spacing_glyph = 4
 
 [sub_resource type="Theme" id="Theme_3yaa0"]
 default_font = SubResource("FontVariation_o4cbe")
