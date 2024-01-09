@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7t8yksj1dbhf"]
+[gd_scene load_steps=18 format=3 uid="uid://7t8yksj1dbhf"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tw7s1"]
 [ext_resource type="PackedScene" uid="uid://yyaj3k1cmcfm" path="res://player.tscn" id="1_vm42q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ca71wyi1a8u42" path="res://art/sky.png" id="5_ryrkb"]
 [ext_resource type="AudioStream" uid="uid://d5m5epf1lwu8" path="res://sound/fish1_dead.wav" id="6_0uv8k"]
 [ext_resource type="AudioStream" uid="uid://cntm3k6tx7fwk" path="res://sound/water_exit.wav" id="6_gav3u"]
+[ext_resource type="Texture2D" uid="uid://b6fc8sa3g0a7g" path="res://icon.svg" id="13_6bmbb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl85p"]
 size = Vector2(150.235, 272)
@@ -35,6 +36,16 @@ loop = true
 script = ExtResource("1_tw7s1")
 obstacle_scene = ExtResource("2_dpaam")
 metadata/_edit_vertical_guides_ = [1895.0, 1498.0]
+
+[node name="UpButton" type="TouchScreenButton" parent="."]
+position = Vector2(1104, 554)
+texture_normal = ExtResource("13_6bmbb")
+action = "swim_up"
+
+[node name="DownButton" type="TouchScreenButton" parent="."]
+position = Vector2(40, 562)
+texture_normal = ExtResource("13_6bmbb")
+action = "swim_down"
 
 [node name="Air" type="Area2D" parent="."]
 visible = false
