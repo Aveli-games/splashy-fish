@@ -15,6 +15,8 @@ var water_gate_streak = 0
 func _ready():
 	$Player.start($StartPosition.position)
 	LocalHighScores.load()
+	LocalHighScores.local_high_score.connect(_on_local_high_score)
+	GlobalHighScores.global_high_score.connect(_on_global_high_score)
 	change_music($MainMenuMusic)
 
 func game_over():
@@ -40,6 +42,7 @@ func change_music(music_node):
 	$Music.stop()
 	$GameOverSound.stop()
 	$MainMenuMusic.stop()
+	$HighScoreSound.stop()
 	music_node.play()
 
 func _on_obstacle_timer_timeout():
@@ -93,6 +96,14 @@ func _on_start_timer_timeout():
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score("Score: %s" % score)
+	
+func _on_local_high_score(rank):
+	if $HighScoreSound.get_playback_position() == 0:
+		change_music($HighScoreSound)
+
+func _on_global_high_score():
+	if $HighScoreSound.get_playback_position() == 0:
+		change_music($HighScoreSound)
 
 func _on_hud_main_menu_shown():
 	change_music($MainMenuMusic)

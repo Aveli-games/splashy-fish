@@ -22,7 +22,8 @@ script = ExtResource("1_l6m3a")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "Local"
+text = "Personal
+"
 horizontal_alignment = 1
 
 [node name="HighScores" type="VBoxContainer" parent="." groups=["HighScores"]]

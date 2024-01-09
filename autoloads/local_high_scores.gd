@@ -1,5 +1,7 @@
 extends Node
 
+signal local_high_score
+
 const SCORE_SAVE_PATH = "user://local_high_scores.json"
 const ENCRYPTION_PASS = "keytochangeforrelease"
 
@@ -30,7 +32,7 @@ func load():
 	else:
 		printerr("No saved data!")
 
-func is_high_score(score):
+func is_local_high_score(score):
 	return HIGH_SCORE_COUNT_LIMIT > get_score_rank(score)
 
 func get_score_rank(score):
@@ -42,10 +44,10 @@ func get_score_rank(score):
 		for entry in scores:
 			var entry_score = int(entry["score"])
 			if int(score) > entry_score:
-				rank = scores.find(entry)
+				rank = scores.rfind(entry)
 				break
 			if int(score) == entry_score:
-				rank = scores.find(entry) + 1
+				rank = scores.rfind(entry) + 1
 	return rank
 
 func submit_score(initials, score):
@@ -55,4 +57,5 @@ func submit_score(initials, score):
 	if rank < HIGH_SCORE_COUNT_LIMIT:
 		scores.insert(rank, {"name": initials, "score": score})
 		save()
+		local_high_score.emit(rank)
 		return true
