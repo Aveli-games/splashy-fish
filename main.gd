@@ -16,6 +16,7 @@ func _ready():
 	$Player.start($StartPosition.position)
 	LocalHighScores.load()
 	LocalHighScores.local_high_score.connect(_on_local_high_score)
+	GlobalHighScores.global_high_score.connect(_on_global_high_score)
 	change_music($MainMenuMusic)
 
 func game_over():
@@ -96,7 +97,12 @@ func _on_score_timer_timeout():
 	$HUD.update_score("Score: %s" % score)
 	
 func _on_local_high_score(rank):
-	change_music($HighScoreSound)
+	if $HighScoreSound.get_playback_position() == 0:
+		change_music($HighScoreSound)
+
+func _on_global_high_score():
+	if $HighScoreSound.get_playback_position() == 0:
+		change_music($HighScoreSound)
 
 func _on_hud_main_menu_shown():
 	change_music($MainMenuMusic)

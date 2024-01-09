@@ -73,7 +73,6 @@ func _on_main_menu_button_pressed():
 	for child in get_children():
 		child.hide()
 	$MainMenu.show()
-	$Leaderboards/Title.reset()
 
 func _on_main_menu_visibility_changed():
 	if $MainMenu.visible:

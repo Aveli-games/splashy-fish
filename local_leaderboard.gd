@@ -8,13 +8,15 @@ signal global_scores_populated
 const HIGH_SCORE_COLOR = 0xf06d45ff  # Kind of a goldish yellow
 
 func _ready():
+	reset_title_text()
 	if global:
-		$Title.text = 'Global'
 		GlobalHighScores.leaderboard_fetched.connect(_on_leaderboard_fetched)
-	LocalHighScores.local_high_score.connect(_on_local_high_score)
+	else:
+		LocalHighScores.local_high_score.connect(_on_local_high_score)
 
 func _on_visibility_changed():
 	if visible:
+		reset_title_text()
 		if global:
 			$HighScores.populate_scoreboard(GlobalHighScores.scores)
 			global_scores_populated.emit()
@@ -34,6 +36,8 @@ func _on_local_high_score(rank):
 				var cur_rank = "#" + str(rank + 1)
 				if score_entry.get_node("Rank").text == cur_rank:
 					score_entry.set_color(Color.hex(HIGH_SCORE_COLOR))
+					set_title_text("Local High Score!", Color.hex(HIGH_SCORE_COLOR))
+					break
 
 # Highlight global high score
 func highlight_global_score(initials, score):
@@ -48,3 +52,16 @@ func highlight_global_score(initials, score):
 		
 		if rank < board_size:
 			score_nodes[rank].set_color(Color.hex(HIGH_SCORE_COLOR))
+			set_title_text("Global High Score!", Color.hex(HIGH_SCORE_COLOR))
+
+func set_title_text(title: String, color: Color):
+	$Title.text = title
+	$Title.add_theme_color_override("font_color", color)
+
+func reset_title_text():
+	if global:
+		$Title.text = "Global"
+	else:
+		$Title.text = "Local"
+	
+	$Title.remove_theme_color_override("font_color")
