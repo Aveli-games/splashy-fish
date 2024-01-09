@@ -35,7 +35,7 @@ func new_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	$StartTimer.start()
 	change_music($Music)
-	
+
 func change_music(music_node):
 	$Music.stop()
 	$GameOverSound.stop()
