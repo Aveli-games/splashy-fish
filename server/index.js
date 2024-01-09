@@ -8,7 +8,16 @@ let memoryScores = []
 // let memoryScores = [{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 },{ name: 'POP', score: 700 },{ name: 'POE', score: 701 },{ name: 'PKP', score: 722 },{ name: 'POP', score: 700 }].sort((a, b) => b.score - a.score).slice(0,10)
 
 downloadIntoMemory()
-    .then((data) => memoryScores = JSON.parse(data.toString()))
+    .then((data) => {
+        const stringData = data.toString()
+        const parsedData = JSON.parse(stringData)
+        if (JSON.stringify(memoryScores) !== stringData) {
+            console.log('updating scores from bucket')
+            console.log('memory:', memoryScores)
+            console.log('bucket:', parsedData)
+        }
+        memoryScores = parsedData
+    })
     .catch(console.error);
 
 const addScore = ({name, score}) => {
@@ -42,6 +51,7 @@ app.use(async function(ctx, next) {
     if ('POST' !== ctx.method) return await next();
     const body = ctx.request.body;
     console.log('body:', body)
+    await downloadIntoMemory()
     let scoreUpdated = false
     if (body.name && body.score) {
         scoreUpdated = handleScoreSubmit(body)
