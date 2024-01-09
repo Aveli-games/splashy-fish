@@ -36,7 +36,7 @@ func _on_local_high_score(rank):
 				var cur_rank = "#" + str(rank + 1)
 				if score_entry.get_node("Rank").text == cur_rank:
 					score_entry.set_color(Color.hex(HIGH_SCORE_COLOR))
-					set_title_text("Local High Score!", Color.hex(HIGH_SCORE_COLOR))
+					set_title_text("Personal High Score!", Color.hex(HIGH_SCORE_COLOR))
 					break
 
 # Highlight global high score
@@ -62,6 +62,6 @@ func reset_title_text():
 	if global:
 		$Title.text = "Global"
 	else:
-		$Title.text = "Local"
+		$Title.text = "Personal"
 	
 	$Title.remove_theme_color_override("font_color")
