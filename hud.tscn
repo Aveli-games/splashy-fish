@@ -36,6 +36,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Scores"
 
+[node name="QuitButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+
 [node name="GameScreen" type="CanvasLayer" parent="."]
 visible = false
 
@@ -155,6 +161,7 @@ text = "Main Menu"
 [connection signal="visibility_changed" from="MainMenu" to="." method="_on_main_menu_visibility_changed"]
 [connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/ScoreboardButton" to="." method="_on_scoreboard_button_pressed"]
+[connection signal="pressed" from="MainMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="GameScreen/RestartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="GameScreen/MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="text_changed" from="HighScoreEntry/NameEntry" to="HighScoreEntry/NameEntry" method="_on_text_changed"]
