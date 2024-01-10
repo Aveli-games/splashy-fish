@@ -97,7 +97,7 @@ func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score("Score: %s" % score)
 	
-func _on_local_high_score(rank):
+func _on_local_high_score(_rank):
 	if $HighScoreSound.get_playback_position() == 0:
 		change_music($HighScoreSound)
 
