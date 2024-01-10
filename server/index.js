@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const logger = require('koa-logger');
 const { koaBody } = require('koa-body');
+const cors = require('@koa/cors');
 
 const sampleScores = require('./scoreboard-sample.json')
 const {uploadFromMemory, downloadIntoMemory} = require("./storage");
@@ -48,6 +49,7 @@ const handleScoreSubmit = ({name, score}) => {
 
 const app = new Koa();
 app.use(logger());
+app.use(cors({origin: 'https://html.itch.zone'}));
 app.use(koaBody({ multipart: true }));
 
 // POST to add score
