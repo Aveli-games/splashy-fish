@@ -44,7 +44,7 @@ func get_score_rank(score):
 		for entry in scores:
 			var entry_score = int(entry["score"])
 			if int(score) > entry_score:
-				rank = scores.rfind(entry)
+				rank = scores.find(entry)
 				break
 			if int(score) == entry_score:
 				rank = scores.rfind(entry) + 1
