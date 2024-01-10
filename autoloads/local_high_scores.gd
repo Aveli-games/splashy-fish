@@ -3,7 +3,7 @@ extends Node
 signal local_high_score
 
 const SCORE_SAVE_PATH = "user://local_high_scores.json"
-const ENCRYPTION_PASS = "riK4qcrq8N"
+const ENCRYPTION_PASS = "keytochangeforrelease"
 
 var version = 1
 
