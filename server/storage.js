@@ -1,5 +1,5 @@
 const bucketName = process.env.GCLOUD_STORAGE_BUCKET;
-const version = process.env.npm_package_version
+const version = process.env.GAME_VERSION
 const fileName = 'scores.json';
 
 const filePath = `${version}/${fileName}`
