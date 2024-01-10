@@ -50,3 +50,7 @@ swim_down={
 [physics]
 
 2d/default_linear_damp=2.08167e-17
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
