@@ -74,6 +74,9 @@ func _on_main_menu_button_pressed():
 	for child in get_children():
 		child.hide()
 	$MainMenu.show()
+	
+func _on_quit_button_pressed():
+	get_tree().quit()
 
 func _on_main_menu_visibility_changed():
 	if $MainMenu.visible:
