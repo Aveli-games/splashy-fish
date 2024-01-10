@@ -1,6 +1,8 @@
 const bucketName = process.env.GCLOUD_STORAGE_BUCKET;
+const version = process.env.GAME_VERSION
 const fileName = 'scores.json';
 
+const filePath = `${version}/${fileName}`
 
 // Imports the Google Cloud client library
 const {Storage} = require('@google-cloud/storage');
@@ -12,15 +14,15 @@ async function uploadFromMemory(contents) {
     await storage.bucket(bucketName).file(fileName).save(contents);
 
     console.log(
-        `${fileName} with contents ${contents} uploaded to ${bucketName}.`
+        `${filePath} with contents ${contents} uploaded to ${bucketName}.`
     );
 }
 async function downloadIntoMemory() {
     // Downloads the file into a buffer in memory.
-    const contents = await storage.bucket(bucketName).file(fileName).download();
+    const contents = await storage.bucket(bucketName).file(filePath).download();
 
     console.log(
-        `Contents of gs://${bucketName}/${fileName} are ${contents.toString()}.`
+        `Contents of gs://${bucketName}/${filePath} are ${contents.toString()}.`
     );
     return contents
 }
