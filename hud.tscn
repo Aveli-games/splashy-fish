@@ -90,13 +90,24 @@ wait_time = 4.0
 visible = false
 
 [node name="Up" type="TouchScreenButton" parent="GameScreen/MobileControls"]
-position = Vector2(1072, 640)
+position = Vector2(312, 507)
 rotation = 3.14159
 texture_normal = ExtResource("2_agy7w")
 action = "swim_up"
 
 [node name="Down" type="TouchScreenButton" parent="GameScreen/MobileControls"]
-position = Vector2(208, 536)
+position = Vector2(207, 539)
+texture_normal = ExtResource("2_agy7w")
+action = "swim_down"
+
+[node name="Up2" type="TouchScreenButton" parent="GameScreen/MobileControls"]
+position = Vector2(1080, 507)
+rotation = 3.14159
+texture_normal = ExtResource("2_agy7w")
+action = "swim_up"
+
+[node name="Down2" type="TouchScreenButton" parent="GameScreen/MobileControls"]
+position = Vector2(976, 539)
 texture_normal = ExtResource("2_agy7w")
 action = "swim_down"
 
