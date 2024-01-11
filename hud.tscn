@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://x3oe10u0lnm6"]
+[gd_scene load_steps=5 format=3 uid="uid://x3oe10u0lnm6"]
 
 [ext_resource type="Script" path="res://hud.gd" id="1_08byj"]
+[ext_resource type="Texture2D" uid="uid://c2e1bdw0jevua" path="res://art/direction_arrow.png" id="2_agy7w"]
 [ext_resource type="PackedScene" uid="uid://bu4hub4oo1x7a" path="res://leaderboard.tscn" id="2_wo5dk"]
 [ext_resource type="Script" path="res://name_entry.gd" id="5_a5jol"]
 
@@ -84,6 +85,20 @@ text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="GameScreen"]
 wait_time = 4.0
+
+[node name="MobileControls" type="CanvasLayer" parent="GameScreen"]
+visible = false
+
+[node name="Up" type="TouchScreenButton" parent="GameScreen/MobileControls"]
+position = Vector2(1072, 640)
+rotation = 3.14159
+texture_normal = ExtResource("2_agy7w")
+action = "swim_up"
+
+[node name="Down" type="TouchScreenButton" parent="GameScreen/MobileControls"]
+position = Vector2(208, 536)
+texture_normal = ExtResource("2_agy7w")
+action = "swim_down"
 
 [node name="HighScoreEntry" type="VBoxContainer" parent="."]
 visible = false

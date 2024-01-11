@@ -8,6 +8,10 @@ var initials = ""
 var score = 0
 
 func _ready():
+	if OS.get_name() == 'Web':
+		$MainMenu/QuitButton.hide()
+	if OS.has_feature("mobile"):
+		$GameScreen/MobileControls.show()
 	GlobalHighScores.global_high_score.connect(_on_global_high_score)
 
 func show_message(text):
